@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+int main(){
+    
+    char str[1000], ch;
+    
+    int key;
+    
+    printf("Enter Text: ");
+    scanf("%s", str);
+    printf("Enter Key: ");
+    scanf("%d", &key);
+    
+    for(int i=0; str[i] != '\0'; i++){
+        
+        ch = str[i];
+        
+        
+        if(ch){
+            
+            //използване  на малки букви
+            if(ch >= 97 && ch <= 122){
+                ch = ((ch - 97 - key + 26) % 26) + 97;
+            }
+            
+            //използване на големи букви
+            if(ch >= 65 && ch <= 90){
+                ch = ((ch - 65 - key + 26) % 26) + 65;
+            }
+            
+            //използване на числа
+            if(ch >= 48 && ch <= 57){
+                ch = ((ch - 48 - key + 10) % 10) + 48;
+            }
+            
+            //използване на специални символи
+            if(ch >= 33 && ch <= 47){
+                ch = ((ch - 33 - key + 15) % 15) + 33;
+            }
+            
+            //използване на специални символи
+            if(ch >= 58 && ch <= 64){
+                ch = ((ch - 58 - key + 7) % 7) + 58;
+            }
+            
+            //използване на специални символи
+            if(ch >= 91 && ch <= 96){
+                ch = ((ch - 91 - key + 6) % 6) + 91;
+            }
+            
+            //използване на специални символи
+            if(ch >= 123 && ch <= 126){
+                ch = ((ch - 123 - key + 4) % 4) + 123;
+            }
+            
+  
+        }
+        else{
+            printf("Invalid Symbol: ");
+        }
+        
+        str[i] = ch;
+    }
+    
+    printf("Decryption: %s", str);
+    
+    return 0;
+}
